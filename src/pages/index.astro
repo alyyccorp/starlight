@@ -1,0 +1,568 @@
+---
+// Landing page for Happy and Near.
+---
+
+<!doctype html>
+<html lang="es">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Happy and Near | Puntos de recogida urbanos</title>
+    <meta
+      name="description"
+      content="Happy and Near conecta compras digitales con tiendas locales cercanas y monitoreo inteligente de paquetes."
+    />
+    <style>
+      :root {
+        --aqua: #00c2c7;
+        --yellow: #ffc928;
+        --purple: #5b3fd6;
+        --bg: #f5f7fa;
+        --text: #1f2937;
+        --white: #ffffff;
+        --radius: 14px;
+        --shadow: 0 12px 30px rgba(31, 41, 55, 0.08);
+      }
+
+      * {
+        box-sizing: border-box;
+      }
+
+      html {
+        scroll-behavior: smooth;
+      }
+
+      body {
+        margin: 0;
+        font-family: Inter, "Segoe UI", Roboto, Helvetica, Arial, sans-serif;
+        color: var(--text);
+        background: var(--bg);
+        line-height: 1.55;
+      }
+
+      img,
+      svg {
+        display: block;
+        max-width: 100%;
+      }
+
+      a {
+        color: inherit;
+        text-decoration: none;
+      }
+
+      .container {
+        width: min(1120px, 92vw);
+        margin-inline: auto;
+      }
+
+      .section {
+        padding: 4.5rem 0;
+      }
+
+      .section-title {
+        font-size: clamp(1.5rem, 2.8vw, 2.3rem);
+        margin: 0 0 0.9rem;
+      }
+
+      .section-copy {
+        max-width: 64ch;
+        margin: 0;
+        color: #4b5563;
+      }
+
+      .chip {
+        display: inline-block;
+        font-size: 0.85rem;
+        font-weight: 700;
+        letter-spacing: 0.05em;
+        text-transform: uppercase;
+        color: var(--purple);
+        margin-bottom: 0.75rem;
+      }
+
+      .btn {
+        border: 0;
+        border-radius: 999px;
+        padding: 0.85rem 1.2rem;
+        font-weight: 700;
+        font-size: 0.95rem;
+        cursor: pointer;
+        transition: transform 0.25s ease, box-shadow 0.25s ease, background 0.25s ease;
+      }
+
+      .btn:focus-visible {
+        outline: 3px solid color-mix(in srgb, var(--aqua) 45%, white);
+        outline-offset: 2px;
+      }
+
+      .btn-primary {
+        background: linear-gradient(110deg, var(--aqua), var(--purple));
+        color: var(--white);
+        box-shadow: 0 12px 20px rgba(91, 63, 214, 0.24);
+      }
+
+      .btn-primary:hover {
+        transform: translateY(-2px);
+        box-shadow: 0 16px 28px rgba(91, 63, 214, 0.28);
+      }
+
+      .btn-secondary {
+        background: var(--white);
+        color: var(--purple);
+        border: 1px solid rgba(91, 63, 214, 0.24);
+      }
+
+      .btn-secondary:hover {
+        background: color-mix(in srgb, var(--purple) 7%, white);
+      }
+
+      .site-header {
+        position: sticky;
+        top: 0;
+        z-index: 100;
+        background: color-mix(in srgb, white 87%, var(--bg));
+        backdrop-filter: blur(10px);
+        border-bottom: 1px solid #e5e7eb;
+      }
+
+      .nav-wrap {
+        display: flex;
+        align-items: center;
+        justify-content: space-between;
+        gap: 0.9rem;
+        padding: 0.65rem 0;
+      }
+
+      .brand {
+        display: flex;
+        align-items: center;
+        gap: 0.65rem;
+        font-weight: 800;
+      }
+
+      .logo-mark {
+        width: 36px;
+        height: 36px;
+      }
+
+      .site-nav ul {
+        display: none;
+        list-style: none;
+        margin: 0;
+        padding: 0;
+        gap: 1.1rem;
+      }
+
+      .site-nav a {
+        font-size: 0.92rem;
+        color: #374151;
+      }
+
+      .site-nav a:hover {
+        color: var(--purple);
+      }
+
+      .hero {
+        padding-top: 4rem;
+      }
+
+      .hero-grid {
+        display: grid;
+        gap: 2rem;
+      }
+
+      .hero h1 {
+        font-size: clamp(2rem, 5vw, 3.2rem);
+        line-height: 1.12;
+        margin: 0 0 0.9rem;
+      }
+
+      .hero p {
+        margin: 0 0 1.3rem;
+        max-width: 48ch;
+        color: #4b5563;
+      }
+
+      .hero-visual {
+        background: radial-gradient(circle at 18% 20%, rgba(0, 194, 199, 0.18), transparent 52%),
+          radial-gradient(circle at 82% 28%, rgba(255, 201, 40, 0.24), transparent 56%),
+          radial-gradient(circle at 54% 78%, rgba(91, 63, 214, 0.2), transparent 52%),
+          var(--white);
+        border-radius: 28px;
+        padding: 1.2rem;
+        box-shadow: var(--shadow);
+      }
+
+      .steps-grid,
+      .points-grid,
+      .benefits-grid {
+        display: grid;
+        gap: 1rem;
+      }
+
+      .card {
+        background: var(--white);
+        border-radius: var(--radius);
+        padding: 1.1rem;
+        box-shadow: var(--shadow);
+        border: 1px solid #ecedf1;
+      }
+
+      .icon-line {
+        width: 38px;
+        height: 38px;
+        color: var(--aqua);
+      }
+
+      .step-title,
+      .point-title,
+      .benefit-title {
+        margin: 0.8rem 0 0.4rem;
+        font-size: 1.08rem;
+      }
+
+      .point-meta {
+        margin: 0.25rem 0;
+        color: #4b5563;
+      }
+
+      .map-shell {
+        margin-top: 1.25rem;
+        background: var(--white);
+        border-radius: calc(var(--radius) + 4px);
+        border: 1px solid #e8eaf0;
+        padding: 0.85rem;
+      }
+
+      .map-grid {
+        height: 220px;
+        border-radius: 14px;
+        background-image: linear-gradient(transparent 95%, #dbe2ef 95%),
+          linear-gradient(90deg, transparent 95%, #dbe2ef 95%);
+        background-size: 32px 32px;
+        background-color: #f9fbff;
+        position: relative;
+        overflow: hidden;
+      }
+
+      .pin {
+        width: 16px;
+        height: 16px;
+        border: 3px solid;
+        border-radius: 50% 50% 50% 0;
+        transform: rotate(-45deg);
+        position: absolute;
+      }
+
+      .pin::after {
+        content: "";
+        width: 5px;
+        height: 5px;
+        border-radius: 50%;
+        background: currentColor;
+        position: absolute;
+        top: 3px;
+        left: 3px;
+      }
+
+      .tracking-card {
+        background: linear-gradient(145deg, #ffffff, #f0f4ff);
+        border-radius: 20px;
+        padding: 1.2rem;
+        border: 1px solid #e6e8f2;
+      }
+
+      .tracking-form {
+        display: grid;
+        gap: 0.65rem;
+        margin: 1.1rem 0;
+      }
+
+      .tracking-form input {
+        border: 1px solid #d6dae5;
+        border-radius: 999px;
+        padding: 0.8rem 1rem;
+        font-size: 0.95rem;
+      }
+
+      .status-list {
+        list-style: none;
+        margin: 0;
+        padding: 0;
+        display: grid;
+        gap: 0.5rem;
+      }
+
+      .status-item {
+        display: flex;
+        align-items: center;
+        gap: 0.55rem;
+        color: #4b5563;
+      }
+
+      .status-dot {
+        width: 12px;
+        height: 12px;
+        border-radius: 50%;
+        background: #c8cedc;
+      }
+
+      .status-item.active {
+        color: #111827;
+        font-weight: 700;
+      }
+
+      .status-item.active .status-dot {
+        background: var(--aqua);
+        box-shadow: 0 0 0 4px rgba(0, 194, 199, 0.16);
+      }
+
+      .footer {
+        padding: 2.1rem 0;
+        border-top: 1px solid #e4e7ee;
+        margin-top: 1rem;
+      }
+
+      .footer-grid {
+        display: grid;
+        gap: 0.8rem;
+      }
+
+      .social {
+        display: flex;
+        gap: 0.9rem;
+        color: #4b5563;
+      }
+
+      @media (min-width: 720px) {
+        .site-nav ul {
+          display: flex;
+        }
+
+        .hero-grid {
+          grid-template-columns: 1.15fr 1fr;
+          align-items: center;
+        }
+
+        .steps-grid {
+          grid-template-columns: repeat(2, minmax(0, 1fr));
+        }
+
+        .points-grid,
+        .benefits-grid {
+          grid-template-columns: repeat(3, minmax(0, 1fr));
+        }
+
+        .tracking-form {
+          grid-template-columns: 1fr auto;
+          align-items: center;
+        }
+
+        .footer-grid {
+          grid-template-columns: 1fr auto auto;
+          align-items: center;
+        }
+      }
+
+      @media (min-width: 1024px) {
+        .steps-grid {
+          grid-template-columns: repeat(4, minmax(0, 1fr));
+        }
+      }
+    </style>
+  </head>
+  <body>
+    <header class="site-header">
+      <div class="container nav-wrap">
+        <a href="#inicio" class="brand" aria-label="Happy and Near">
+          <svg class="logo-mark" viewBox="0 0 100 100" fill="none" aria-hidden="true">
+            <!-- Pin and smile logo in simple 2D line style -->
+            <path d="M50 8C32 8 18 22 18 40c0 22 28 50 32 50s32-28 32-50C82 22 68 8 50 8Z" stroke="#5B3FD6" stroke-width="6" />
+            <path d="M37 42c3-5 8-8 13-8s10 3 13 8" stroke="#00C2C7" stroke-width="5" stroke-linecap="round" />
+            <circle cx="42" cy="52" r="3.5" fill="#FFC928" />
+            <circle cx="58" cy="52" r="3.5" fill="#FFC928" />
+          </svg>
+          <span>Happy and Near</span>
+        </a>
+        <nav class="site-nav" aria-label="Principal">
+          <ul>
+            <li><a href="#inicio">Inicio</a></li>
+            <li><a href="#como-funciona">Cómo funciona</a></li>
+            <li><a href="#puntos">Encuentra un punto</a></li>
+            <li><a href="#seguimiento">Seguimiento</a></li>
+            <li><a href="#tiendas">Para tiendas</a></li>
+            <li><a href="#contacto">Contacto</a></li>
+          </ul>
+        </nav>
+      </div>
+    </header>
+
+    <main>
+      <section class="hero section" id="inicio">
+        <div class="container hero-grid">
+          <div>
+            <span class="chip">Red urbana inteligente</span>
+            <h1>Happy and Near: tus compras, felices y cerca</h1>
+            <p>Conectamos compras digitales con tiendas locales para que recojas cuando quieras, a pocas cuadras de tu casa y con visibilidad total de tu paquete.</p>
+            <a href="#puntos" class="btn btn-primary">Encuentra tu punto</a>
+          </div>
+          <div class="hero-visual" aria-hidden="true">
+            <svg viewBox="0 0 460 280" role="img" aria-label="Pines conectados en una red urbana">
+              <path d="M40 188C90 125 150 245 208 185s96-40 138-82 58-23 74-55" stroke="#00C2C7" stroke-width="4" stroke-linecap="round" fill="none" opacity="0.8" />
+              <path d="M20 150c54-39 112-8 169-39S320 42 438 72" stroke="#5B3FD6" stroke-width="3" fill="none" stroke-linecap="round" opacity="0.7" />
+              <g transform="translate(78,158)"><path d="M18 2C9 2 2 9 2 18c0 11 14 25 16 25s16-14 16-25C34 9 27 2 18 2Z" stroke="#FFC928" stroke-width="4" fill="none" /><circle cx="18" cy="18" r="4" fill="#FFC928" /></g>
+              <g transform="translate(208,104)"><path d="M18 2C9 2 2 9 2 18c0 11 14 25 16 25s16-14 16-25C34 9 27 2 18 2Z" stroke="#00C2C7" stroke-width="4" fill="none" /><circle cx="18" cy="18" r="4" fill="#00C2C7" /></g>
+              <g transform="translate(342,176)"><path d="M18 2C9 2 2 9 2 18c0 11 14 25 16 25s16-14 16-25C34 9 27 2 18 2Z" stroke="#5B3FD6" stroke-width="4" fill="none" /><circle cx="18" cy="18" r="4" fill="#5B3FD6" /></g>
+            </svg>
+          </div>
+        </div>
+      </section>
+
+      <section class="section" id="como-funciona">
+        <div class="container">
+          <span class="chip">Cómo funciona</span>
+          <h2 class="section-title">4 pasos simples para una entrega más cercana</h2>
+          <div class="steps-grid">
+            <article class="card">
+              <svg class="icon-line" viewBox="0 0 48 48" fill="none"><rect x="8" y="12" width="32" height="24" rx="4" stroke="currentColor" stroke-width="2.6" /><path d="M16 20h16M16 27h10" stroke="#5B3FD6" stroke-width="2.6" stroke-linecap="round" /></svg>
+              <h3 class="step-title">1. Compras en línea</h3>
+              <p>Compra en tus tiendas favoritas con la comodidad de siempre.</p>
+            </article>
+            <article class="card">
+              <svg class="icon-line" viewBox="0 0 48 48" fill="none"><path d="M24 6c-7 0-12 5-12 12 0 8 10 18 12 18s12-10 12-18c0-7-5-12-12-12Z" stroke="currentColor" stroke-width="2.6" /><circle cx="24" cy="18" r="4" stroke="#FFC928" stroke-width="2.6" /></svg>
+              <h3 class="step-title">2. Enviamos al punto</h3>
+              <p>Tu pedido llega a un punto Happy and Near dentro de tu zona.</p>
+            </article>
+            <article class="card">
+              <svg class="icon-line" viewBox="0 0 48 48" fill="none"><rect x="12" y="6" width="24" height="36" rx="5" stroke="currentColor" stroke-width="2.6" /><path d="M17 16h14M17 22h14M17 28h8" stroke="#5B3FD6" stroke-width="2.6" stroke-linecap="round" /></svg>
+              <h3 class="step-title">3. Te avisamos</h3>
+              <p>Recibes notificaciones cuando cambia el estado del paquete.</p>
+            </article>
+            <article class="card">
+              <svg class="icon-line" viewBox="0 0 48 48" fill="none"><path d="M9 23h30M22 12l-12 11 12 11" stroke="currentColor" stroke-width="2.6" stroke-linecap="round" stroke-linejoin="round" /><path d="M30 14h8v20h-8" stroke="#FFC928" stroke-width="2.6" /></svg>
+              <h3 class="step-title">4. Recoges cerca</h3>
+              <p>Pasa cuando te convenga y retira a minutos de casa.</p>
+            </article>
+          </div>
+        </div>
+      </section>
+
+      <section class="section" id="puntos">
+        <div class="container">
+          <span class="chip">Encuentra un punto cercano</span>
+          <h2 class="section-title">Ubicaciones disponibles en tu barrio</h2>
+          <p class="section-copy">Elige el punto que mejor se adapte a tu rutina. Nuestra red crece por zonas para ofrecer cobertura local con atención confiable.</p>
+
+          <div class="map-shell" aria-hidden="true">
+            <div class="map-grid">
+              <span class="pin" style="color: var(--aqua); left: 22%; top: 36%;"></span>
+              <span class="pin" style="color: var(--purple); left: 54%; top: 26%;"></span>
+              <span class="pin" style="color: var(--yellow); left: 72%; top: 58%;"></span>
+              <span class="pin" style="color: var(--aqua); left: 33%; top: 66%;"></span>
+            </div>
+          </div>
+
+          <div class="points-grid" style="margin-top: 1rem;">
+            <article class="card">
+              <h3 class="point-title">Market Central Norte</h3>
+              <p class="point-meta">Av. Libertad 341, Centro</p>
+              <p class="point-meta">Lun-Sáb · 09:00 - 20:30</p>
+              <button class="btn btn-secondary">Elegir este punto</button>
+            </article>
+            <article class="card">
+              <h3 class="point-title">Kiosco Parque Viva</h3>
+              <p class="point-meta">Calle 12 #44-20, Parque Viva</p>
+              <p class="point-meta">Lun-Dom · 08:00 - 21:00</p>
+              <button class="btn btn-secondary">Elegir este punto</button>
+            </article>
+            <article class="card">
+              <h3 class="point-title">Store Tech Barrio Sur</h3>
+              <p class="point-meta">Carrera 8 #19-87, Barrio Sur</p>
+              <p class="point-meta">Lun-Sáb · 10:00 - 19:30</p>
+              <button class="btn btn-secondary">Elegir este punto</button>
+            </article>
+          </div>
+        </div>
+      </section>
+
+      <section class="section" id="seguimiento">
+        <div class="container">
+          <span class="chip">Seguimiento de paquetes</span>
+          <h2 class="section-title">Monitoreo en tiempo real con tecnología Sistrack</h2>
+          <p class="section-copy">Happy and Near integra monitoreo inteligente para darte visibilidad de cada etapa: desde el tránsito hasta la disponibilidad para recoger.</p>
+
+          <div class="tracking-card">
+            <form class="tracking-form" id="tracking-form">
+              <input id="tracking-number" type="text" placeholder="Ingresa tu número de guía" aria-label="Número de guía" required />
+              <button class="btn btn-primary" type="submit">Rastrear</button>
+            </form>
+
+            <ul class="status-list" id="status-list" aria-live="polite">
+              <li class="status-item active"><span class="status-dot"></span>En tránsito</li>
+              <li class="status-item"><span class="status-dot"></span>Llegó al punto</li>
+              <li class="status-item"><span class="status-dot"></span>Listo para recoger</li>
+            </ul>
+          </div>
+        </div>
+      </section>
+
+      <section class="section" id="tiendas">
+        <div class="container">
+          <span class="chip">Para tiendas aliadas</span>
+          <h2 class="section-title">Convierte tu local en un punto Happy and Near</h2>
+          <div class="benefits-grid">
+            <article class="card">
+              <h3 class="benefit-title">Ingreso extra mensual</h3>
+              <p>Recibe comisiones por paquete entregado en tu tienda, sin costos ocultos.</p>
+            </article>
+            <article class="card">
+              <h3 class="benefit-title">Más clientes en tu zona</h3>
+              <p>Aumenta el tráfico al local y abre nuevas oportunidades de venta cruzada.</p>
+            </article>
+            <article class="card">
+              <h3 class="benefit-title">Sin inversión inicial</h3>
+              <p>Implementación rápida con capacitación y soporte tecnológico continuo.</p>
+            </article>
+          </div>
+          <div style="margin-top: 1.2rem;">
+            <a href="#contacto" class="btn btn-primary">Quiero ser punto</a>
+          </div>
+        </div>
+      </section>
+    </main>
+
+    <footer class="footer" id="contacto">
+      <div class="container footer-grid">
+        <div>
+          <strong>Happy and Near</strong>
+          <p style="margin: 0.3rem 0 0; color: #4b5563;">hola@happyandnear.com · +57 300 000 0000</p>
+        </div>
+        <div class="social" aria-label="Redes sociales">
+          <a href="#" aria-label="Instagram">Instagram</a>
+          <a href="#" aria-label="LinkedIn">LinkedIn</a>
+          <a href="#" aria-label="X">X</a>
+        </div>
+        <a href="#" style="color: #4b5563;">Aviso de privacidad</a>
+      </div>
+    </footer>
+
+    <script>
+      // Minimal tracking simulation to communicate package progress.
+      const form = document.querySelector('#tracking-form');
+      const statusItems = document.querySelectorAll('.status-item');
+
+      form?.addEventListener('submit', (event) => {
+        event.preventDefault();
+
+        statusItems.forEach((item) => item.classList.remove('active'));
+
+        // Random status progression as a simple UI placeholder.
+        const randomIndex = Math.floor(Math.random() * statusItems.length);
+        for (let i = 0; i <= randomIndex; i += 1) {
+          statusItems[i].classList.add('active');
+        }
+      });
+    </script>
+  </body>
+</html>
